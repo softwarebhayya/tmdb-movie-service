@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: movie-service
+  name: movie-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: movie-service
+    spec:
+      containers:
+      - image: docker.io/softwarebhayya/movie-service:0.0.1-SNAPSHOT
+        name: movie-service
+        volumeMounts:
+          - mountPath: /app/config
+            name: movie-service-config
+        env:
+          - name: SPRING_CONFIG_LOCATION
+            value: /app/config/
+      volumes:
+        - name: movie-service-config
+          configMap:
+            name: movie-service-config
+status: {}
