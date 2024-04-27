@@ -64,6 +64,16 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<image>
+						<name>docker.io/softwarebhayya/${project.artifactId}:${project.version}}</name>
+						<publish>true</publish>
+					</image>
+					<docker>
+						<publishRegistry>
+							<username>${env.DOCKERHUB_USER}</username>
+							<password>${env.DOCKERHUB_PWD}</password>
+						</publishRegistry>
+					</docker>
 				</configuration>
 			</plugin>
 		</plugins>
